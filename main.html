@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>The Debator</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript">
+            function getCurrentEvent(t){
+                var text;
+                var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+    		            if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+    		                text = xmlhttp.responseText;
+    		            }   
+    		        };
+                    xmlhttp.open("GET", "getEvent.php", true);
+                    xmlhttp.send();
+                    
+                    var stringArray = text.split(", Description: ");//will split into title (array[0]) and descrip array[1]
+                    var titleText = document.createTextNode(stringArray[0]);
+                    var titleObject = document.createElement('a');
+                    titleObject.appendChild(titleText);
+                    titleObject.href = "issuePage.php"
+                    var descripText = document.createTextNode(stringArray[1]);
+                    var descripObject = document.createElement('p');
+                    descripObject.appendChild(descripText);
+                    t.appendChild(titleObject);
+                    t.appendChild(descripObject)
+  
+            }
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="../main.html">Home</a></li>
+      <li class="active"><a href="#environment.html">Environment</a></li>
+      <li class="active"><a href="#economy.html">Economy</a></li>
+      <li class="active"><a href="#foreign.html">Foreign Policy</a></li>
+      <li class="active"><a href="#politics.html">Politics</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#politics.html">Other
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Page 1-1</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          
+        </ul>
+      </li>
+
+    </ul>
+    <div><ul class="nav navbar-nav navbar-right">
+      <li><a href="login/register.html" class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="login/login.html" class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul></div>
+  </div>
+</nav>
+
+<div class="container">
+    <div id="jumbo" class="jumbotron">
+        <h1 style="text-align:left; font-style:plain;">The Debator</h1>
+            <p style="text-align:left; font-style:italic;">&nbspYour opinion goes here.</p> 
+     </div>
+  <br>
+    <div class="row">
+        <div style="text-align:center" class="col-sm-7" onload="getCurrentEvent(this)" id="issue1">
+            <p>test</p><br>
+            test2
+
+        </div>
+        <div class="col-sm-4 col-sm-offset-1" onload="getCurrentEvent(this)" id="issue2">
+            <p>test</p>
+        </div>
+    </div>
+    
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <center>
+        <p class="text-muted">
+            HackTJ &nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp
+            The Debator &nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp
+            2016 
+        </p>
+        </center>
+    </div>
+</footer>
+
+</body>
+</html>
